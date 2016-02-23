@@ -1,0 +1,15 @@
+{
+    "architecture": "@CLICK_ARCH@",
+    "description": "A Unity scope for connecting to Glances remotely",
+    "framework": "ubuntu-sdk-15.04.4",
+    "hooks": {
+        "glances-scope": {
+            "apparmor": "glances-scope.apparmor",
+            "scope": "glances-scope"
+        }
+    },
+    "maintainer": "Pieter Engelbrecht (chesedo) <pehshelchesed@gmail.com>",
+    "name": "glances-scope.chesedo",
+    "title": "glances-scope",
+    "version": "0.1"
+}

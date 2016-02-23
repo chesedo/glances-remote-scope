@@ -1,0 +1,4 @@
+[type: gettext/ini] src/data/glances-scope.ini.in
+[type: gettext/ini] src/data/glances-scope-settings.ini.in
+@GENERATED_POTFILES@
+

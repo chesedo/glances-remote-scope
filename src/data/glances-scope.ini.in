@@ -1,0 +1,10 @@
+[ScopeConfig]
+ScopeRunner=./node_modules/unity-js-scopes/bin/unity-js-scopes-launcher %S %R
+_DisplayName=Glances-scope Scope
+_Description=This is a Glances-scope scope
+Author = Pieter Engelbrecht (chesedo) <pehshelchesed@gmail.com>
+Icon = icon.png
+
+[Appearance]
+PageHeader.Logo = logo.png
+
