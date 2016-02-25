@@ -1,0 +1,3 @@
+Please note that the Docker logo belongs to Docker Inc and its usage has to stay in complaince with https://www.docker.com/brand-guidelines
+
+The other images where all made by Freepik(http://www.freepik.com/) from www.flaticon.com(http://www.flaticon.com/) except for swap which is a combination from memory and disk

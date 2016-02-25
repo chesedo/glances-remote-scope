@@ -1,5 +1,6 @@
 var scopes = require('unity-js-scopes');
 
+var GlancesData = require('glances-data').GlancesData;
 
 scopes.self.initialize(
             {}
@@ -50,4 +51,3 @@ scopes.self.initialize(
                 }
             }
             );
-

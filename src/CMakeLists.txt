@@ -29,6 +29,19 @@ configure_file(
 )
 
 add_custom_target(
+  copy_emblems ALL
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+  "${CMAKE_CURRENT_SOURCE_DIR}/data/emblems"
+  "${CMAKE_CURRENT_BINARY_DIR}/emblems"
+)
+add_custom_target(
+  copy_mascots ALL
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+  "${CMAKE_CURRENT_SOURCE_DIR}/data/mascots"
+  "${CMAKE_CURRENT_BINARY_DIR}/mascots"
+)
+
+add_custom_target(
   copy_modules ALL
   COMMAND ${CMAKE_COMMAND} -E create_symlink
     "${CMAKE_CURRENT_SOURCE_DIR}/node_modules"
@@ -50,6 +63,8 @@ install(
 install(
   DIRECTORY
     "${CMAKE_CURRENT_SOURCE_DIR}/node_modules"
+    "${CMAKE_CURRENT_SOURCE_DIR}/data/emblems"
+    "${CMAKE_CURRENT_SOURCE_DIR}/data/mascots"
   DESTINATION
     ${SCOPE_INSTALL_DIR}
   USE_SOURCE_PERMISSIONS
