@@ -10,6 +10,9 @@ AlertsCategory = new AlertsCategory.AlertsCategory();
 var ResourcesCategory = require("categories/resources");
 ResourcesCategory = new ResourcesCategory.ResourcesCategory();
 
+var FilesystemsCategory = require("categories/filesystems");
+FilesystemsCategory = new FilesystemsCategory.FilesystemsCategory();
+
 var ProcessListCategory = require("categories/process_list");
 ProcessListCategory = new ProcessListCategory.ProcessListCategory();
 
@@ -64,9 +67,12 @@ scopes.self.initialize(
                                                 } else {
                                                     // Search mode
                                                     ProcessListCategory.createCategory(search_reply, qs);
+                                                    FilesystemsCategory.createCategory(search_reply, qs);
                                                 }
                                                 break;
                                             case "fs":
+                                                FilesystemsCategory.createCategory(search_reply, qs);
+                                                break;
                                             case "processList":
                                                 ProcessListCategory.createCategory(search_reply, qs);
                                                 break;
@@ -95,6 +101,8 @@ scopes.self.initialize(
                                             ResourcesCategory.createPreview(preview_reply, result);
                                             break;
                                         case "fs":
+                                            FilesystemsCategory.createPreview(preview_reply);
+                                            break;
                                         case "processList":
                                             ProcessListCategory.createPreview(preview_reply);
                                             break;
