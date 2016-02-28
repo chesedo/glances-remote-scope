@@ -3,6 +3,10 @@ var scopes = require('unity-js-scopes');
 // Get data helper
 var GlancesData = require('glances-data').GlancesData;
 
+// Get all categories' helpers
+var AlertsCategory = require("categories/alerts");
+AlertsCategory = new AlertsCategory.AlertsCategory();
+
 scopes.self.initialize(
             {}
             ,
@@ -49,6 +53,7 @@ scopes.self.initialize(
                                             case "":
                                                 if (qs === "") {
                                                     // Surface mode
+                                                    AlertsCategory.createCategory(search_reply);
                                                 } else {
                                                     // Search mode
                                                 }
@@ -74,6 +79,8 @@ scopes.self.initialize(
                                     // Check which category it is coming from
                                     switch (result.get("resultCategory")) {
                                         case "Alerts":
+                                            AlertsCategory.createPreview(preview_reply);
+                                            break;
                                         case "Resources":
                                         case "fs":
                                         case "processList":
