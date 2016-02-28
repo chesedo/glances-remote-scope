@@ -16,6 +16,9 @@ FilesystemsCategory = new FilesystemsCategory.FilesystemsCategory();
 var ProcessListCategory = require("categories/process_list");
 ProcessListCategory = new ProcessListCategory.ProcessListCategory();
 
+var NetworkCategory = require("categories/network");
+NetworkCategory = new NetworkCategory.NetworkCategory();
+
 scopes.self.initialize(
             {}
             ,
@@ -68,6 +71,7 @@ scopes.self.initialize(
                                                     // Search mode
                                                     ProcessListCategory.createCategory(search_reply, qs);
                                                     FilesystemsCategory.createCategory(search_reply, qs);
+                                                    NetworkCategory.createCategory(search_reply, qs);
                                                 }
                                                 break;
                                             case "fs":
@@ -77,6 +81,8 @@ scopes.self.initialize(
                                                 ProcessListCategory.createCategory(search_reply, qs);
                                                 break;
                                             case "network":
+                                                NetworkCategory.createCategory(search_reply, qs);
+                                                break;
                                             case "docker":
                                         }
                                         search_reply.finished();
@@ -107,6 +113,8 @@ scopes.self.initialize(
                                             ProcessListCategory.createPreview(preview_reply);
                                             break;
                                         case "network":
+                                            NetworkCategory.createPreview(preview_reply);
+                                            break;
                                         case "docker":
                                     }
 
