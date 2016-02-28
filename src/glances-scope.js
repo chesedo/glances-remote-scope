@@ -19,6 +19,9 @@ ProcessListCategory = new ProcessListCategory.ProcessListCategory();
 var NetworkCategory = require("categories/network");
 NetworkCategory = new NetworkCategory.NetworkCategory();
 
+var DockerCategory = require("categories/docker");
+DockerCategory = new DockerCategory.DockerCategory();
+
 scopes.self.initialize(
             {}
             ,
@@ -72,6 +75,11 @@ scopes.self.initialize(
                                                     ProcessListCategory.createCategory(search_reply, qs);
                                                     FilesystemsCategory.createCategory(search_reply, qs);
                                                     NetworkCategory.createCategory(search_reply, qs);
+
+                                                    // Search if docker if supported
+                                                    if (data.hasDocker()) {
+                                                        DockerCategory.createCategory(search_reply, qs);
+                                                    }
                                                 }
                                                 break;
                                             case "fs":
@@ -84,6 +92,10 @@ scopes.self.initialize(
                                                 NetworkCategory.createCategory(search_reply, qs);
                                                 break;
                                             case "docker":
+                                                if (data.hasDocker()) {
+                                                    DockerCategory.createCategory(search_reply, qs);
+                                                    break;
+                                                }
                                         }
                                         search_reply.finished();
                                     });
@@ -116,6 +128,8 @@ scopes.self.initialize(
                                             NetworkCategory.createPreview(preview_reply);
                                             break;
                                         case "docker":
+                                            DockerCategory.createPreview(preview_reply);
+                                            break;
                                     }
 
                                     preview_reply.finished();
