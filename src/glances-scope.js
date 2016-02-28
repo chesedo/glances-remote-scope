@@ -7,6 +7,9 @@ var GlancesData = require('glances-data').GlancesData;
 var AlertsCategory = require("categories/alerts");
 AlertsCategory = new AlertsCategory.AlertsCategory();
 
+var ResourcesCategory = require("categories/resources");
+ResourcesCategory = new ResourcesCategory.ResourcesCategory();
+
 scopes.self.initialize(
             {}
             ,
@@ -53,6 +56,7 @@ scopes.self.initialize(
                                             case "":
                                                 if (qs === "") {
                                                     // Surface mode
+                                                    ResourcesCategory.createCategory(search_reply, canned_query);
                                                     AlertsCategory.createCategory(search_reply);
                                                 } else {
                                                     // Search mode
@@ -82,6 +86,8 @@ scopes.self.initialize(
                                             AlertsCategory.createPreview(preview_reply);
                                             break;
                                         case "Resources":
+                                            ResourcesCategory.createPreview(preview_reply, result);
+                                            break;
                                         case "fs":
                                         case "processList":
                                         case "network":
