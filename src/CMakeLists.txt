@@ -12,13 +12,13 @@ intltool_merge_translations(
 )
 
 configure_file(
-  "data/icon.png"
-  "${CMAKE_CURRENT_BINARY_DIR}/icon.png"
+  "data/icon.svg"
+  "${CMAKE_CURRENT_BINARY_DIR}/icon.svg"
   @ONLY COPYONLY
 )
 configure_file(
-  "data/logo.png"
-  "${CMAKE_CURRENT_BINARY_DIR}/logo.png"
+  "data/logo.svg"
+  "${CMAKE_CURRENT_BINARY_DIR}/logo.svg"
   @ONLY COPYONLY
 )
 
@@ -53,8 +53,8 @@ install(
   FILES
     "${CMAKE_CURRENT_BINARY_DIR}/${SCOPE_NAME}.ini"
     "${CMAKE_CURRENT_BINARY_DIR}/${SCOPE_NAME}-settings.ini"
-    "${CMAKE_CURRENT_BINARY_DIR}/icon.png"
-    "${CMAKE_CURRENT_BINARY_DIR}/logo.png"
+    "${CMAKE_CURRENT_BINARY_DIR}/icon.svg"
+    "${CMAKE_CURRENT_BINARY_DIR}/logo.svg"
     "${CMAKE_CURRENT_BINARY_DIR}/${SCOPE_NAME}.js"
   DESTINATION
     ${SCOPE_INSTALL_DIR}

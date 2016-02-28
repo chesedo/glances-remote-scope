@@ -1,7 +1,7 @@
 {
     "architecture": "@CLICK_ARCH@",
     "description": "A Unity scope for connecting to Glances remotely",
-    "framework": "ubuntu-sdk-15.04.4",
+    "framework": "ubuntu-sdk-15.04",
     "hooks": {
         "glances-scope": {
             "apparmor": "glances-scope.apparmor",

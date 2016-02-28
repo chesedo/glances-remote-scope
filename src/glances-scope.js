@@ -1,5 +1,6 @@
 var scopes = require('unity-js-scopes');
 
+// Get data helper
 var GlancesData = require('glances-data').GlancesData;
 
 scopes.self.initialize(
@@ -7,24 +8,60 @@ scopes.self.initialize(
             ,
             {
                 run: function() {
-                    console.log('Running...')
                 },
                 start: function(scope_id) {
-                    console.log('Starting scope id: '
-                                + scope_id
-                                + ', '
-                                + scopes.self.scope_directory)
                 },
                 search: function(canned_query, metadata) {
                     return new scopes.lib.SearchQuery(
                                 canned_query,
                                 metadata,
-                                // run
+                                // Perform search
                                 function(search_reply) {
+                                    // Get settings and values
                                     var qs = canned_query.query_string();
+                                    var dep = canned_query.department_id();
+                                    var ip = scopes.self.settings.ip.get_string();
+                                    var port = scopes.self.settings.port.get_string();
 
+                                    // Create departments
+                                    var rootDepartment = new scopes.lib.Department("", canned_query, "Overview");
+                                    var processListDepartment = new scopes.lib.Department("processList", canned_query, "Processes List");
+                                    var fsDepartment = new scopes.lib.Department("fs", canned_query, "Filesystems");
+                                    var networkDepartment = new scopes.lib.Department("network", canned_query, "Networks");
+                                    rootDepartment.set_subdepartments([processListDepartment, fsDepartment, networkDepartment]);
+
+                                    // Exit if details are missing
+                                    if (ip === "" || port === "") {
+                                        return
+                                    }
+
+                                    // Build reply
+                                    data = new GlancesData(ip, port, function() {
+                                        // Add docker department if needed
+                                        if (data.hasDocker()) {
+                                            var dockerDepartment = new scopes.lib.Department("docker", canned_query, "Docker");
+                                            rootDepartment.add_subdepartment(dockerDepartment);
+                                        }
+                                        search_reply.register_departments(rootDepartment);
+
+                                        // Check which department is needed
+                                        switch (dep) {
+                                            case "":
+                                                if (qs === "") {
+                                                    // Surface mode
+                                                } else {
+                                                    // Search mode
+                                                }
+                                                break;
+                                            case "fs":
+                                            case "processList":
+                                            case "network":
+                                            case "docker":
+                                        }
+                                        search_reply.finished();
+                                    });
                                 },
-                                // cancelled
+                                // Cancelled
                                 function() {
                                 });
                 },
@@ -32,20 +69,21 @@ scopes.self.initialize(
                     return new scopes.lib.PreviewQuery(
                                 result,
                                 action_metadata,
-                                // run
+                                // Build preview
                                 function(preview_reply) {
-                                    var layout1col = new scopes.lib.ColumnLayout(1);
-                                    var layout2col = new scopes.lib.ColumnLayout(2);
-
-
-
-                                    var header = new scopes.lib.PreviewWidget("header", "header");
-                                    header.add_attribute_mapping("title", "title");
-
+                                    // Check which category it is coming from
+                                    switch (result.get("resultCategory")) {
+                                        case "Alerts":
+                                        case "Resources":
+                                        case "fs":
+                                        case "processList":
+                                        case "network":
+                                        case "docker":
+                                    }
 
                                     preview_reply.finished();
                                 },
-                                // cancelled
+                                // Cancelled
                                 function() {
                                 });
                 }

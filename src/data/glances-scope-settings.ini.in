@@ -2,19 +2,12 @@
 # calling scopes.self.settings from anywhere in your scope implementation.
 # E.g. var location = scopes.self.settings["location"].get_string();
 
-#[location]
-#type = string
-#defaultValue = London,uk
-#_displayName = Default Location
+[ip]
+type = string
+_displayName = Remote IP
 
-#[units]
-#type = list
-#_displayName = Temperature Units
-#_displayValues = Metric;Imperial
-#defaultValue = 0
-
-#[forecast]
-#type = boolean
-#defaultValue = true
-#_displayName = Show Forecast
+[port]
+type = string
+_displayName = Port
+defaultValue = 61208
 

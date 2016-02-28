@@ -1,10 +1,17 @@
 [ScopeConfig]
 ScopeRunner=./node_modules/unity-js-scopes/bin/unity-js-scopes-launcher %S %R
-_DisplayName=Glances-scope Scope
-_Description=This is a Glances-scope scope
+_DisplayName=Glances Remote
+_Description=This is a scope that connects to a remote Glances instance
 Author = Pieter Engelbrecht (chesedo) <pehshelchesed@gmail.com>
-Icon = icon.png
+Icon = icon.svg
 
 [Appearance]
-PageHeader.Logo = logo.png
-
+PageHeader.Logo = logo.svg
+PageHeader.Background = color:///#2c363f
+PageHeader.ForegroundColor = #ddd
+PageHeader.DividerColor = #59D16C
+BackgroundColor = #F4F2F3
+ForegroundColor = #333
+CategoryHeaderBackground = color:///#ddd6d9
+ShapeImages = false
+PreviewButtonColor = #59D16C
