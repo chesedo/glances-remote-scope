@@ -25,6 +25,9 @@ DockerCategory = new DockerCategory.DockerCategory();
 var SetupCategory = require("categories/setup");
 SetupCategory = new SetupCategory.SetupCategory();
 
+var ErrorCategory = require("categories/error");
+ErrorCategory = new ErrorCategory.ErrorCategory();
+
 scopes.self.initialize(
             {}
             ,
@@ -103,7 +106,21 @@ scopes.self.initialize(
                                                 }
                                         }
                                         search_reply.finished();
-                                    });
+                                    },
+                                    // Connection failed
+                                    function(e) {
+                                        var mes;
+                                        if (e.message.search("EHOSTUNREACH") !== -1) {
+                                            mes = ip + " is unreachable"
+                                        } else if (e.message.search("ECONNREFUSED") !== -1) {
+                                            mes = "Is glances running on port " + port + "?"
+                                        } else {
+                                            mes = "Connection failed with: " + e.message
+                                        }
+
+                                        ErrorCategory.createCategory(search_reply, canned_query, mes);
+                                    }
+);
                                 },
                                 // Cancelled
                                 function() {
