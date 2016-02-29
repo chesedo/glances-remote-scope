@@ -4,6 +4,7 @@ _DisplayName=Glances Remote
 _Description=This is a scope that connects to a remote Glances instance
 Author = Pieter Engelbrecht (chesedo) <pehshelchesed@gmail.com>
 Icon = icon.svg
+Art = screenshot.png
 
 [Appearance]
 PageHeader.Logo = logo.svg
