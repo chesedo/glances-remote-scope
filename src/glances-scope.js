@@ -22,6 +22,9 @@ NetworkCategory = new NetworkCategory.NetworkCategory();
 var DockerCategory = require("categories/docker");
 DockerCategory = new DockerCategory.DockerCategory();
 
+var SetupCategory = require("categories/setup");
+SetupCategory = new SetupCategory.SetupCategory();
+
 scopes.self.initialize(
             {}
             ,
@@ -51,7 +54,9 @@ scopes.self.initialize(
 
                                     // Exit if details are missing
                                     if (ip === "" || port === "") {
-                                        return
+                                        SetupCategory.createCategory(search_reply);
+
+                                        return;
                                     }
 
                                     // Build reply
@@ -129,6 +134,9 @@ scopes.self.initialize(
                                             break;
                                         case "docker":
                                             DockerCategory.createPreview(preview_reply);
+                                            break;
+                                        case "Setup":
+                                            SetupCategory.createPreview(preview_reply);
                                             break;
                                     }
 
