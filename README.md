@@ -39,6 +39,7 @@ They appear when the given item has gone over a limit set in the Glances config:
 - Expand on the details shown in the Docker department (like network details, diskio, etc)
 - Getting to understand and show some of Alert's missing details
 - Adding a raid department
+- Gettting sensor stats in overview
 - Investigate if querying only the needed data (multiple requests) will be better than quering all in one request (has some wasted traffic)
-- Move the query for the limits to the scopes start function - cut down on requests
+- Move the query for the limits to the scopes start function - cut down on requests (would also fix [#3](../../issues/3))
 - Add missing limits checks
